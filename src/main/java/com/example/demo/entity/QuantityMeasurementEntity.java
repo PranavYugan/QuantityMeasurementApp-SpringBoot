@@ -1,52 +1,85 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 
 @Entity
 @Table(
-    name = "quantity_measurement",
-    indexes = {
-        @Index(name = "idx_action", columnList = "action"),
-        @Index(name = "idx_type", columnList = "type"),
-        @Index(name = "idx_timestamp", columnList = "timestamp")
-    }
+        name = "quantity_measurement",
+        indexes = {
+                @Index(name = "idx_action", columnList = "action"),
+                @Index(name = "idx_type", columnList = "type"),
+                @Index(name = "idx_timestamp", columnList = "timestamp")
+        }
 )
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class QuantityMeasurementEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "action", nullable = false)
     private String action;
 
-    @Column(name = "expression", nullable = false)
     private String expression;
 
-    @Column(name = "result")
     private Double result;
 
-    @Column(name = "result_string", columnDefinition = "TEXT")
     private String resultString;
 
-    @Column(name = "timestamp", nullable = false, updatable = false)
     private LocalDateTime timestamp;
 
     @PrePersist
     protected void onCreate() {
         timestamp = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getExpression() {
+        return expression;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
+
+    public Double getResult() {
+        return result;
+    }
+
+    public void setResult(Double result) {
+        this.result = result;
+    }
+
+    public String getResultString() {
+        return resultString;
+    }
+
+    public void setResultString(String resultString) {
+        this.resultString = resultString;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 }

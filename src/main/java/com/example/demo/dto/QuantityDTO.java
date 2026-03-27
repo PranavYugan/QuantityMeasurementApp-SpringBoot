@@ -33,4 +33,22 @@ public class QuantityDTO {
         message = "Type must be one of: length, volume, weight, temperature"
     )
     private String type;
+
+	public Double getValue() {
+		return value;
+	}
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public String getType() {
+		return type;
+	}
+    
+    
 }
